@@ -53,7 +53,8 @@ class AttiresController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $attiresModel = AttiresModel::findOrFail($id);
+        return View('attires.edit', compact('attiresModel')); //pass associative array(kvp) to the view.
     }
 
     /**
@@ -61,7 +62,25 @@ class AttiresController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validate user incoming-data
+        $request->validate([
+            'name'=>'required|max:30',
+            'price'=>'required',
+            'color'=>'required|max:10',
+            'size'=>'required'
+        ]);
+
+        //pass the data to the db if model validation isSuccessful 
+        $attiresModel = AttiresModel::findOrFail($id);
+        $attiresModel->name = $request->name;
+        $attiresModel->price = $request->price;
+        $attiresModel->color = $request->color;
+        $attiresModel->size = $request->size;
+
+        $attiresModel->save();
+
+        return redirect()->route('attires');
+
     }
 
     /**
