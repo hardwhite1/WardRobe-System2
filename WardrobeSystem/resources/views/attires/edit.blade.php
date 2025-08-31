@@ -62,40 +62,26 @@
         padding-left: 20px;
     }
 </style>
-@if($errors->any())
-    <div class="error-box">
-        <strong>Whoops!</strong>An error occured while processing your input
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+<div class="form-container">
+    <form action="{{ route('update', $attiresModel->id)}}" method="post">
+        @csrf
+        @method('PATCH')
 
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="{{$attiresModel->name}}">
+            
+            <label for="size">Size</label>
+            <input type="text" name="size" value="{{ $attiresModel->size}}">
 
-<div class="quote-box">
-    An unexamined life is not worth living. - Socrates
+            <label for="color">Color:</label>
+            <input type="text" name="color" value="{{ $attiresModel->color}}">
+
+            <label for="price">Price:</label>
+            <input type="number" name="price" value="{{ $attiresModel->price }}">
+
+            <label for="image">Image</label>
+            <input type="file" name="image" value="{{ $attiresModel->image }}">
+
+            <button type="submit">Submit</button>
+    </form>
 </div>
-
-<form action="{{route('attires.store')}}" method="post" enctype="multipart/form-data">
-    @csrf
-    <div class="form-container">
-        <label for="name">Name:</label>
-        <input type="text" name="name" value="{{old('name')}}">
-    
-        <label for="size">Size:</label>
-        <input type="text" name="size" value="{{old('size')}}">
-    
-        <label for="color">Color: </label>
-        <input type="text" name="color" value="{{old('color')}}">
-    
-        <label for="price">Price: </label>
-        <input type="number" name="price" value="{{old('price')}}">
-
-        <label for="image">Image</label>
-        <input type="file" name="image" value="{{old('image')}}">
-
-        <button type="submit" class="btn btn-success">Submit</button>
-    </div>
-</form>

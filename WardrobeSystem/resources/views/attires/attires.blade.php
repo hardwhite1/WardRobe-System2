@@ -32,26 +32,27 @@
     font-size: 1em;
     margin-bottom: 4px;
 }
+.edit{
+    margin-bottom: 10px; background-color: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;
+}
 
 </style>
-
-<div class="quote-box">
-     Always remember that you are absolutely unique. Just like everyone else. - Margaret Mead 
-</div>
-
 
 <ul class="item-list">
      @foreach($attiresModel as $attireModel)
      <li>
           <!-- Display image -->
-          <img src="{{ asset('storage/attires/' . $attireModel->image) }}" alt="{{ $attireModel->name }}">
+          <img src="{{ asset('storage/' . $attireModel->image) }}" alt="{{ $attireModel->name }}">
+
 
           <!-- Display details -->
-          <a href="{{route('edit', $attireModel->id)}}">Edit</a>
           <strong>Name: {{$attireModel->name}}</strong>
           <strong>Price: {{$attireModel->price}}</strong>
           <strong>Color: {{$attireModel->color}}</strong>
-          <strong>Size: {{$attireModel->size}}</strong>          
+          <strong>Size: {{$attireModel->size}}</strong>
+          <button class="edit">
+               <a href="{{ route('edit', $attireModel->id) }}" style="color: white; text-decoration: none;">Edit</a>
+          </button>          
      </li>
      @endforeach
 </ul>
