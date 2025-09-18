@@ -63,7 +63,7 @@
     }
 </style>
 <div class="form-container">
-    <form action="{{ route('update', $attiresModel->id)}}" method="post">
+    <form action="{{ route('update', $attiresModel->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 

@@ -52,7 +52,12 @@
           <strong>Size: {{$attireModel->size}}</strong>
           <button class="edit">
                <a href="{{ route('edit', $attireModel->id) }}" style="color: white; text-decoration: none;">Edit</a>
-          </button>          
+          </button>    
+            <form action="{{route('destroy', $attireModel->id)}}" method="post" style="margin-top: 10px";>
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger">DELETE</button>            
+            </form>    
      </li>
      @endforeach
 </ul>

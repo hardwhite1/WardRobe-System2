@@ -28,16 +28,23 @@ class AttiresController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name'=>'required|max:30',
-            'price'=>'required',
-            'color'=>'required|max:10',
-            'size'=>'required'
+        $request->validate([
+            'name' => 'required|max:30',
+            'price' => 'required',
+            'color' => 'required|max:10',
+            'size' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        AttiresModel::create($validated);
+        $data = $request->only(['name', 'price', 'color', 'size']); // get only relevant fields
 
-        return redirect()->route('attires');
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        AttiresModel::create($data);
+
+        return redirect()->route('attires')->with('success', 'Attire created successfully.');
     }
 
     /**
@@ -60,35 +67,42 @@ class AttiresController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+   public function update(Request $request, string $id)
     {
-        //validate user incoming-data
         $request->validate([
-            'name'=>'required|max:30',
-            'price'=>'required',
-            'color'=>'required|max:10',
-            'size'=>'required'
+            'name' => 'required|max:30',
+            'price' => 'required',
+            'color' => 'required|max:10',
+            'size' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        //pass the data to the db if model validation isSuccessful 
         $attiresModel = AttiresModel::findOrFail($id);
+
         $attiresModel->name = $request->name;
         $attiresModel->price = $request->price;
         $attiresModel->color = $request->color;
         $attiresModel->size = $request->size;
 
+        if ($request->hasFile('image')) {
+            $attiresModel['image'] = $request->file('image')->store('images', 'public');
+        }
+
         $attiresModel->save();
 
         return redirect()->route('attires');
-
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $attiresModel = AttiresModel::findOrFail($id);
+        $attiresModel->delete();
+
+        return redirect()->route('attires');
     }
 
     public function attires()
