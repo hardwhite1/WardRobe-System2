@@ -56,10 +56,14 @@
             <form action="{{route('destroy', $attireModel->id)}}" method="post" style="margin-top: 10px";>
                 @csrf
                 @method('DELETE')
-                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger">DELETE</button>            
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" style="color: red; text-decoration: none;">DELETE</button>            
             </form>    
      </li>
      @endforeach
 </ul>
+
+<button class="edit">
+    <a href="{{ route('/') }}" style="color: white; text-decoration: none;">Back Home</a>
+</button> 
 
      

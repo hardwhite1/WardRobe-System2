@@ -10,9 +10,9 @@ class AttiresController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function welcome()
     {
-        // 
+        return view('welcome');
     }
 
     /**
@@ -33,7 +33,7 @@ class AttiresController extends Controller
             'price' => 'required',
             'color' => 'required|max:10',
             'size' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
         ]);
 
         $data = $request->only(['name', 'price', 'color', 'size']); // get only relevant fields
@@ -44,7 +44,7 @@ class AttiresController extends Controller
 
         AttiresModel::create($data);
 
-        return redirect()->route('attires')->with('success', 'Attire created successfully.');
+        return redirect()->route('attires')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -74,7 +74,7 @@ class AttiresController extends Controller
             'price' => 'required',
             'color' => 'required|max:10',
             'size' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
         ]);
 
         $attiresModel = AttiresModel::findOrFail($id);
