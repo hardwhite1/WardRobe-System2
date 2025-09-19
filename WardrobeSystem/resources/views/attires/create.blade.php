@@ -64,7 +64,7 @@
 </style>
 @if($errors->any())
     <div class="error-box">
-        <strong>Whoops!</strong>An error occured while processing your input
+        <strong>Whoops!</strong>An error occured while processing your request
         <ul>
             @foreach($errors->all() as $error)
                 <li>{{$error}}</li>
@@ -91,6 +91,11 @@
         <label for="image">Image</label>
         <input type="file" name="image" value="{{old('image')}}">
 
-        <button type="submit" class="btn btn-success">Submit</button>
+        <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('welcome') }}'">
+                 Cancel
+            </button>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
     </div>
 </form>

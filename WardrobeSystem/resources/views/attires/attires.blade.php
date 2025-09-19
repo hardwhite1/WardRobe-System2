@@ -26,6 +26,11 @@
     border-radius: 4px;
     margin-bottom: 10px;
 }
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 
 .item-list li strong {
     color: #007bff;
@@ -62,8 +67,8 @@
      @endforeach
 </ul>
 
-<button class="edit">
-    <a href="{{ route('welcome') }}" style="color: white; text-decoration: none;">Back Home</a>
+<button class="button-group" style="background-color: #4CAF50; border: none; color: white; padding: 15px 30px; text-align: center; text-decoration: none; font-size: 16px; border-radius: 8px; cursor: pointer; transition: background-color 0.3s; margin-top: 20px;">
+    <a href="{{ route('welcome') }}" style="color: white; text-decoration: none; justify-content: center;">Back Home</a>
 </button> 
 
      

@@ -81,7 +81,9 @@
 
             <label for="image">Image</label>
             <input type="file" name="image" value="{{ $attiresModel->image }}">
-
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('welcome') }}'">
+                 Cancel
+            </button>
             <button type="submit">Submit</button>
     </form>
 </div>
