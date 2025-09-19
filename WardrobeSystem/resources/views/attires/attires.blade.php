@@ -56,9 +56,9 @@
           <strong>Color: {{$attireModel->color}}</strong>
           <strong>Size: {{$attireModel->size}}</strong>
           <button class="edit">
-               <a href="{{ route('edit', $attireModel->id) }}" style="color: white; text-decoration: none;">Edit</a>
+               <a href="{{ route('attires.edit', $attireModel->id) }}" style="color: white; text-decoration: none;">Edit</a>
           </button>    
-            <form action="{{route('destroy', $attireModel->id)}}" method="post" style="margin-top: 10px";>
+            <form action="{{route('attires.destroy', $attireModel->id)}}" method="post" style="margin-top: 10px";>
                 @csrf
                 @method('DELETE')
                 <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" style="color: red; text-decoration: none;">DELETE</button>            
