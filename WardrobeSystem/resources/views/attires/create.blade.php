@@ -73,11 +73,6 @@
     </div>
 @endif
 
-
-<div class="quote-box">
-    An unexamined life is not worth living. - Socrates
-</div>
-
 <form action="{{route('attires.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-container">

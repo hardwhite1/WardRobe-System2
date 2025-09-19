@@ -37,7 +37,7 @@
 }
 
 </style>
-@extends('layouts.welcome')
+{{-- @extends('layouts.xyz') --}}
 <ul class="item-list">
      @foreach($attiresModel as $attireModel)
      <li>
