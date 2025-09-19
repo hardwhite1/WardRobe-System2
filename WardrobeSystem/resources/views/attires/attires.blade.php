@@ -37,7 +37,7 @@
 }
 
 </style>
-
+@extends('layouts.welcome')
 <ul class="item-list">
      @foreach($attiresModel as $attireModel)
      <li>
@@ -63,7 +63,7 @@
 </ul>
 
 <button class="edit">
-    <a href="{{ route('/') }}" style="color: white; text-decoration: none;">Back Home</a>
+    <a href="{{ route('welcome') }}" style="color: white; text-decoration: none;">Back Home</a>
 </button> 
 
      

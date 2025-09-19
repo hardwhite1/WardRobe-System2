@@ -79,7 +79,6 @@
     <div class="button-group">
         <a href="{{ route('attires') }}" class="btn">View Wardrobe</a>
         <a href="{{ route('create') }}" class="btn">Add New Item</a>
-        {{-- <a href="{{ route('outfits.index') }}" class="btn">Outfit Planner</a> --}}
     </div>
 </main>
 

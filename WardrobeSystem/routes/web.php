@@ -8,18 +8,21 @@ use App\Http\Controllers\AttiresController;
 //     return view('welcome');
 // });
 
-Route::get('/', [AttiresController::class, 'welcome'])->name('welcome');
-Route::get('attires', [AttiresController::class, 'attires'])->name('attires');
-Route::put('create', [AttiresController::class, 'create'])->name('create');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', [AttiresController::class, 'welcome'])->name('welcome');
+    Route::get('attires', [AttiresController::class, 'attires'])->name('attires');
+    Route::get('create', [AttiresController::class, 'create'])->name('create');
+    Route::post('/store', [AttiresController::class, 'store'])->name('attires.store');
+    Route::get('/{id}', [AttiresController::class, 'edit'])->name('edit');
+    Route::patch('{id}', [AttiresController::class, 'update'])->name('update');
+    Route::delete('/{id}/destroy', [AttiresController::class, 'destroy'])->name('destroy');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';
